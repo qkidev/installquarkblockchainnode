@@ -10,7 +10,7 @@ Linux系统搭建夸克区块链节点
 # 4.设置开机自启
   systemctl enable docker
 
-二、安装节点
+# 二、安装节点
 
 # 1. 创建目录, 保存节点数据
 mkdir -p /data/qk_node
@@ -36,22 +36,27 @@ docker run -it --name qk_poa_node -v /data/qk_node:/root/qk_node -p 8545:8545 -p
 docker run -d --name watchtower-qk-node --restart unless-stopped -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --cleanup -i 3600  qk_poa_node
 
 
-
-docker stop qk_poa_node    关闭容器
-
-
-docker rm  qk_poa_node    删除容器
-
-
+# 8.常见指令
+关闭容器
+docker stop qk_poa_node    
+删除容器
+docker rm  qk_poa_node  
+docker attach qk_poa_node  
+# 三、配置https
+#1.安装宝塔
 yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
 
 
 
-docker attach qk_poa_node
 
 
-宝塔配置文件
-server {
+#宝塔ssl配置文件（修改域名即可）
+
+
+
+
+
+     server {
 	listen 80;
 	listen [::]:80;
 	server_name rpc.chelizi.org.cn;
@@ -64,7 +69,7 @@ server {
 	gzip_types       text/plain application/x-javascript application/javascript application/json text/css application/xml;
 	gzip_vary on;
 	gzip_disable        "MSIE [1-6]\.";
-	
+
 	location ~* \.(ttf|ttc|otf|eot|woff|font.css)$ {
 		add_header Access-Control-Allow-Origin "*";
 		add_header Access-Control-Allow-Headers X-Requested-With;
@@ -98,9 +103,9 @@ server {
 
 
 	access_log  /www/wwwlogs/rpc.chelizi.org.cn.log;
-}
+      }
 
-server {
+      server {
 	listen 443 ssl http2;
 	server_name  rpc.chelizi.org.cn;
 	root /www/wwwroot/rpc.chelizi.org.cn;
@@ -113,7 +118,7 @@ server {
 	
 
 	ssl_certificate    /www/server/panel/vhost/cert/rpc.chelizi.org.cn/fullchain.pem;
-  ssl_certificate_key    /www/server/panel/vhost/cert/rpc.chelizi.org.cn/privkey.pem;
+      ssl_certificate_key    /www/server/panel/vhost/cert/rpc.chelizi.org.cn/privkey.pem;
 	
 	ssl_session_cache shared:SSL:10m;
 	ssl_session_timeout 10m;
