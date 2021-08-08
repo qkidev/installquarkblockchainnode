@@ -1,5 +1,7 @@
-# installquarkblockchainnode
+installquarkblockchainnode
 Linux系统搭建夸克区块链节点
+
+
 #一、安装docker
 # 1.要求系统内核在3.10版本以上，检查内核
  uname -r
