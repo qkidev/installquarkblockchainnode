@@ -155,6 +155,6 @@ yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_
 	   }
 
 	access_log  /www/wwwlogs/https_rpc.chelizi.org.cn.log;
-}
+       }
 
 
