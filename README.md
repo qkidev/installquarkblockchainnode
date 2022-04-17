@@ -66,9 +66,9 @@ docker attach qk_poa_node
 ```
 ## 三、配置https
 ### 1.安装宝塔
-``
+```
 yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
-``
+```
 
 
 
